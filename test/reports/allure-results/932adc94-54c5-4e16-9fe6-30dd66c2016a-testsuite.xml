@@ -1,0 +1,44 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1564989922744' stop='1564989934915'>
+    <name>phptravels.net login page</name>
+    <title>phptravels.net login page</title>
+    <test-cases>
+        <test-case start='1564989922761' status='failed' stop='1564989927126'>
+            <name>should get title</name>
+            <title>should get title</title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome'/>
+            </parameters>
+            <steps/>
+            <attachments>
+                <attachment title='Screenshot' source='ace670c7-4ce1-4139-b4a7-7b7f7f448384-attachment.png' type='image/png' size='38050'/>
+            </attachments>
+            <failure>
+                <message>Expected 'LOGIN' to contain 'LOGINS'.</message>
+                <stack-trace>Error: Expected 'LOGIN' to contain 'LOGINS'.
+                    at &lt;Jasmine>
+                    at &lt;Jasmine>
+                    at UserContext.toContain (C:\Users\Zapcom\Desktop\Leonardo\test\specs/ta-user-login.spec.js:17:38)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1564989927127' status='passed' stop='1564989934914'>
+            <name>should allow user to login </name>
+            <title>should allow user to login </title>
+            <labels>
+                <label name='language' value='javascript'/>
+                <label name='framework' value='wdio'/>
+                <label name='thread' value='0-0'/>
+            </labels>
+            <parameters>
+                <parameter kind='argument' name='browser' value='chrome'/>
+            </parameters>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
