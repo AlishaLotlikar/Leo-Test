@@ -4,7 +4,7 @@
  **/
 /****************************************************************************************/
 
-var xls_json  = require(	'../node_modules/node-excel-to-json');
+var xls_json = require('../node_modules/node-excel-to-json');
 module.exports = {
 
   /***************************************************************************************/
@@ -18,66 +18,140 @@ module.exports = {
    *         must be strictly equal, that is "1" and 1, null an undefined and similar objects
    *         are considered different
    **/
-  /****************************************************************************************/
+  /*************************************Read from CSV file***************************************************/
+  readChangePasswordCSVFile: function () {
+    const papa = require('papaparse');
+    const fs = require('fs');
+    const file = fs.readFileSync('./utilities_example/ChangePassword.csv', 'utf8');
+    var results = [], currentPassword, confirmPassword, newPassword;
+    papa.parse(file, {
+      complete: (result) => {
+        //console.log("@@@@@ Complete CSV file : " + result.data);
+        // // result=result.data;
+        // console.log("###### row: " + result.data[0])
+        // console.log("****** value in a row: " + result.data[0][0])
+        for (var i = 0; i < result.data.length - 1; i++) {
+          currentPassword = result.data[i][0];
+          newPassword = result.data[i][1];
+          confirmPassword = result.data[i][2];
+          results[i] = { current: currentPassword, new: newPassword, confirm: confirmPassword };
+          console.log("Data: " , results);
+          //console.log("password: " + password);
 
-  getPassword : function(){
+        }
+      }
+    });
+    return results;
+  },
+  readPasswordCSVFile: function () {
+    const papa = require('papaparse');
+    const fs = require('fs');
+    const file = fs.readFileSync('./utilities_example/Data.csv', 'utf8');
+    var results = [], username, password;
+    papa.parse(file, {
+      complete: (result) => {
+        //console.log("@@@@@ Complete CSV file : " + result.data);
+        // // result=result.data;
+        // console.log("###### row: " + result.data[0])
+        // console.log("****** value in a row: " + result.data[0][0])
+        for (var i = 0; i < result.data.length - 1; i++) {
+          username = result.data[i][0];
+          password = result.data[i][1]
+          results[i] = { username: username, password: password };
+          //console.log("Data: " , results);
+          //console.log("password: " + password);
+
+        }
+      }
+    });
+    return results;
+  },
+
+  //*********************************************Read from excel sheet***************************************/
+  readExcelFile: function () {
+    var Excel = require("exceljs");
+    var workbook = new Excel.Workbook();
+    //Use then function to executed code that need to perform immediately after readFile
+    workbook.xlsx.readFile('./utilities_example/Book1.xlsx').then(function () {
+      //Use sheetName in getWorksheet function
+      var worksheet = workbook.getWorksheet("Sheet1");
+      //Use nested iterator to read cell in rows 
+      //First iterator for rows in sheet
+      worksheet.eachRow({ includeEmpty: false }, function (row, rowNumber) {
+        console.log("Current Row:" + rowNumber);
+        //Second iterator for cells in row
+        row.eachCell({ includeEmpty: false }, function (cell, colNumber) {
+          //print row number, column number and cell value at[row][col]
+          var username = cell[rowNumber][colNumber].value;
+          console.log(username);
+          console.log("Cell Value=", cell.value, " for cell[" + rowNumber + "]" + "[" + colNumber + "]");
+
+
+          /*
+              write code
+          */
+        });
+      });
+    });
+  },
+  getPassword: function () {
     var password = "demouser";
     return password;
   },
-  getUsername : function(){
-    var username= "user@phptravels.com";
+  getUsername: function () {
+    var username = "user@phptravels.com";
     return username;
   },
-  isEquals : function( x, y ) {
+  isEquals: function (x, y) {
 
     // If both x and y are null or undefined and exactly the same
-    if ( x === y ) {
-        return true;
+    if (x === y) {
+      return true;
     }
 
     // If they are not strictly equal, they both need to be Objects
-    if ( ! ( x instanceof Object ) || ! ( y instanceof Object ) ) {
-        return false;
+    if (!(x instanceof Object) || !(y instanceof Object)) {
+      return false;
     }
 
     // They must have the exact same prototype chain, the closest we can do is
     // test the constructor.
-    if ( x.constructor !== y.constructor ) {
-        return false;
+    if (x.constructor !== y.constructor) {
+      return false;
     }
 
-    for ( var p in x ) {
-        // Inherited properties were tested using x.constructor === y.constructor
-        if ( x.hasOwnProperty( p ) ) {
-            // Allows comparing x[ p ] and y[ p ] when set to undefined
-            if ( ! y.hasOwnProperty( p ) ) {
-                return false;
-            }
-
-            // If they have the same strict value or identity then they are equal
-            if ( x[ p ] === y[ p ] ) {
-                continue;
-            }
-
-            // Numbers, Strings, methods, Booleans must be strictly equal
-            if ( typeof( x[ p ] ) !== "object" ) {
-                return false;
-            }
-
-            // Objects and Arrays must be tested recursively
-            if ( !equals( x[ p ],  y[ p ] ) ) {
-                return false;
-            }
-          }
+    for (var p in x) {
+      // Inherited properties were tested using x.constructor === y.constructor
+      if (x.hasOwnProperty(p)) {
+        // Allows comparing x[ p ] and y[ p ] when set to undefined
+        if (!y.hasOwnProperty(p)) {
+          return false;
         }
 
-        for ( p in y ) {
-          // allows x[ p ] to be set to undefined
-          if ( y.hasOwnProperty( p ) && ! x.hasOwnProperty( p ) ) {
-            return false;
-          }
+        // If they have the same strict value or identity then they are equal
+        if (x[p] === y[p]) {
+          continue;
         }
-        return true;
+
+        // Numbers, Strings, methods, Booleans must be strictly equal
+        if (typeof (x[p]) !== "object") {
+          return false;
+        }
+
+        // Objects and Arrays must be tested recursively
+        if (!equals(x[p], y[p])) {
+          return false;
+        }
+      }
+    }
+
+    for (p in y) {
+      // allows x[ p ] to be set to undefined
+      if (y.hasOwnProperty(p) && !x.hasOwnProperty(p)) {
+        return false;
+      }
+    }
+    return true;
   },
 
   /***************************************************************************************/
@@ -90,8 +164,8 @@ module.exports = {
    * isArray(foo2)	- returns - false
    **/
   /****************************************************************************************/
-  isArray : function (myArray) {
-      return myArray.constructor.toString().indexOf("Array") > -1;
+  isArray: function (myArray) {
+    return myArray.constructor.toString().indexOf("Array") > -1;
   },
 
   /***************************************************************************************/
@@ -106,17 +180,17 @@ module.exports = {
    * @return array will be - ['GBI', 'automation', 45, 7];
    **/
   /****************************************************************************************/
-  getObjValues : function (myjson){
+  getObjValues: function (myjson) {
     var outValuesInArray = [];
 
-  	 if(this.isArray(myjson)){
-    		json = myjson[0];
-    	} else {json = myjson;}
-    	for (var x in json){
-        	outValuesInArray.push(json[x]);
-        	}
-        	//console.log(outValuesInArray);
-        	return outValuesInArray;
+    if (this.isArray(myjson)) {
+      json = myjson[0];
+    } else { json = myjson; }
+    for (var x in json) {
+      outValuesInArray.push(json[x]);
+    }
+    //console.log(outValuesInArray);
+    return outValuesInArray;
   },
 
   /***************************************************************************************/
@@ -131,22 +205,22 @@ module.exports = {
   * @return value will be - "GBI";
   **/
   /****************************************************************************************/
-  getValueByKey : function (jsonObj, jsonKey){
+  getValueByKey: function (jsonObj, jsonKey) {
 
-    	//this.jsonKey = jsonKey;
-    	var keyValue = "";
+    //this.jsonKey = jsonKey;
+    var keyValue = "";
 
-    	if(this.isArray(jsonObj)){
-    		var json = jsonObj[0];
-    	} else {json = jsonObj;}
-    	//console.log(json);
-    	if(json.hasOwnProperty(jsonKey.toUpperCase())){
-    		return keyValue = json[jsonKey.toUpperCase()];
-    	} else if(json.hasOwnProperty(jsonKey.toLowerCase())){
-    		return keyValue = json[jsonKey.toLowerCase()];
-    	} else if (json.hasOwnProperty(jsonKey)){
-    		return keyValue = json[jsonKey];
-    	} else {return undefined;}
+    if (this.isArray(jsonObj)) {
+      var json = jsonObj[0];
+    } else { json = jsonObj; }
+    //console.log(json);
+    if (json.hasOwnProperty(jsonKey.toUpperCase())) {
+      return keyValue = json[jsonKey.toUpperCase()];
+    } else if (json.hasOwnProperty(jsonKey.toLowerCase())) {
+      return keyValue = json[jsonKey.toLowerCase()];
+    } else if (json.hasOwnProperty(jsonKey)) {
+      return keyValue = json[jsonKey];
+    } else { return undefined; }
   },
 
   /***************************************************************************************/
@@ -157,12 +231,12 @@ module.exports = {
    * @return -	true if valueToSearch exists in the json else false
    **/
   /****************************************************************************************/
-  isContains : function (json, value) {
-  	let contains = false;
+  isContains: function (json, value) {
+    let contains = false;
     Object.keys(json).some(key => {
-  		contains = typeof json[key] === 'object' ? isContains(json[key], value) : json[key] === value;
-  	  return contains;
-  	});
+      contains = typeof json[key] === 'object' ? isContains(json[key], value) : json[key] === value;
+      return contains;
+    });
     return contains;
   },
 
@@ -175,14 +249,14 @@ module.exports = {
    * @return -	a  single json object from the json array based on the key-value matches
    **/
   /****************************************************************************************/
-  getObjFromList : function (jsonArray, KeyName, valueToSearch){
-  	for(var i = 0; i < jsonArray.length; ++i){
-     		if (jsonArray[i].hasOwnProperty(KeyName) && (jsonArray[i][KeyName] == valueToSearch)){
-      		//console.log(jsonArray[i]);
-      		return jsonArray[i];
-      	} else {continue;}
+  getObjFromList: function (jsonArray, KeyName, valueToSearch) {
+    for (var i = 0; i < jsonArray.length; ++i) {
+      if (jsonArray[i].hasOwnProperty(KeyName) && (jsonArray[i][KeyName] == valueToSearch)) {
+        //console.log(jsonArray[i]);
+        return jsonArray[i];
+      } else { continue; }
 
-  	}
+    }
   },
 
   /***************************************************************************************/
@@ -200,7 +274,7 @@ module.exports = {
     * - and will push it to the finalResults array.
    **/
   /****************************************************************************************/
-  findObjects : function (obj, targetProp, targetValue, finalResults) {
+  findObjects: function (obj, targetProp, targetValue, finalResults) {
 
     function getObject(theObject) {
       let result = null;
@@ -242,23 +316,23 @@ module.exports = {
    * Turn any xls or xlsx file or OpenDocument Spreadsheet (ODS) into a clean JSON file or Javascript Object.
    **/
   /****************************************************************************************/
-  excel_getTableRow : function (fileName, sheetName, columnName, where, callback){
-    	xls_json(fileName, {
-        'convert_all_sheet': false,
-        'return_type': 'Object',
-        'sheetName': sheetName
-      }, function(err, result) {
-      		  if(err) {
-        		    console.error(err);
-      		  } else if (result){
-      			     for(var row = 0; row < result.length; ++row){
-       				         if (result[row].hasOwnProperty(columnName) && (result[row][columnName] == where)){
-        				             //console.log(result[row]);
-        				              callback(result[row]);
-        			          }
-    			        }
-        	    }
-    	    });
+  excel_getTableRow: function (fileName, sheetName, columnName, where, callback) {
+    xls_json(fileName, {
+      'convert_all_sheet': false,
+      'return_type': 'Object',
+      'sheetName': sheetName
+    }, function (err, result) {
+      if (err) {
+        console.error(err);
+      } else if (result) {
+        for (var row = 0; row < result.length; ++row) {
+          if (result[row].hasOwnProperty(columnName) && (result[row][columnName] == where)) {
+            //console.log(result[row]);
+            callback(result[row]);
+          }
+        }
+      }
+    });
   },
 
   /***************************************************************************************/
@@ -271,19 +345,19 @@ module.exports = {
    * Turn any xls or xlsx file or OpenDocument Spreadsheet (ODS) into a clean JSON file or Javascript Object.
    **/
   /****************************************************************************************/
-  excel_getTableRows : function (fileName, sheetName, callback){
-      xls_json(fileName, {
-        'convert_all_sheet': false,
-        'return_type': 'Object',
-        'sheetName': sheetName
-      }, function(err, result) {
-    		    if(err) {
-      		      console.error(err);
-    		    } else if (result){
-    			      //console.log(result);
-    			      return callback(result);
-      		    }
-  	    });
+  excel_getTableRows: function (fileName, sheetName, callback) {
+    xls_json(fileName, {
+      'convert_all_sheet': false,
+      'return_type': 'Object',
+      'sheetName': sheetName
+    }, function (err, result) {
+      if (err) {
+        console.error(err);
+      } else if (result) {
+        //console.log(result);
+        return callback(result);
+      }
+    });
   },
 
   /***************************************************************************************/
@@ -295,36 +369,36 @@ module.exports = {
    * Turn any xls or xlsx file or OpenDocument Spreadsheet (ODS) into a clean JSON file or Javascript Object.
    **/
   /****************************************************************************************/
-  excel_getAllSheetData : function (fileName, callback){
-      xls_json(fileName, {
-        'convert_all_sheet': true,
-        'return_type': 'Object',
-      }, function(err, result) {
-    		    if(err) {
-      		      console.error(err);
-    		    } else if (result){
-    			      //console.log(result);
-    			      return callback(result);
-      		    }
-  	    });
+  excel_getAllSheetData: function (fileName, callback) {
+    xls_json(fileName, {
+      'convert_all_sheet': true,
+      'return_type': 'Object',
+    }, function (err, result) {
+      if (err) {
+        console.error(err);
+      } else if (result) {
+        //console.log(result);
+        return callback(result);
+      }
+    });
   },
 
 
-/***************************************************************************************/
+  /***************************************************************************************/
   //method to generate timestamp in the format: mm/dd/yy hh:mi:ss
-/***************************************************************************************/
-  getTimeStamp : function () {
+  /***************************************************************************************/
+  getTimeStamp: function () {
     var now = new Date();
     return ((now.getMonth() + 1) + '/' +
-            (now.getDate()) + '/' +
-              now.getFullYear() + " " +
-              now.getHours() + ':' +
-              ((now.getMinutes() < 10)
-                  ? ("0" + now.getMinutes())
-                  : (now.getMinutes())) + ':' +
-               ((now.getSeconds() < 10)
-                  ? ("0" + now.getSeconds())
-                  : (now.getSeconds())));
+      (now.getDate()) + '/' +
+      now.getFullYear() + " " +
+      now.getHours() + ':' +
+      ((now.getMinutes() < 10)
+        ? ("0" + now.getMinutes())
+        : (now.getMinutes())) + ':' +
+      ((now.getSeconds() < 10)
+        ? ("0" + now.getSeconds())
+        : (now.getSeconds())));
   },
 
 
