@@ -25,22 +25,23 @@ describe('navigating to settings', function () {
 
     })
 
-    // it('should render the change password tab', function () {
-    //     Logger.info('=================Change Password======================')
-    //     Reporter.changePasswordTab();
-    //     SettingsPage.open();
-    //     waitFor(EC.visibilityOf(() => $('//div[@role="dialog"]/div[@class="MuiDialogTitle-root"]/h2[contains(text(),"Change Password")]')), 5000);
-    //     SettingsPage.changePasswordInfoTitle();
-    //     assert.equal(SettingsPage.changePasswordInfoTitle(), 'Change Password');
-    //     Logger.info('should have the title "Change Password" on the dialog box');
-    //     assert.equal(SettingsPage.getCurrentField(), 'Current Password');
-    //     Logger.info('should have the title "Current Password" on the dialog box');
-    //     assert.equal(SettingsPage.getNewField(), 'New Password');
-    //     Logger.info('should have the title "New Password" on the dialog box');
-    //     assert.equal(SettingsPage.getConfirmField(), 'Confirm Password');
-    //     Logger.info('should have the title "Confirm Password" on the dialog box');
-    //     browser.pause(2000);
-    // })
+    it('should render the change password tab', function () {
+        logger.info('=================Change Password======================')
+        Reporter.changePasswordTab();
+        SettingsPage.open();
+       // waitFor(EC.visibilityOf(() => $('//div[@role="dialog"]/div[@class="MuiDialogTitle-root"]/h2[contains(text(),"Change Password")]')), 5000);
+        //SettingsPage.changePasswordInfoTitle();
+        //assert.equal(SettingsPage.changePasswordInfoTitle(), 'Change Password');
+        logger.info('should have the title "Change Password" on the dialog box');
+        SettingsPage.changePassword('Admin1234','Alisha123','Alisha123');
+        // assert.equal(SettingsPage.getCurrentField(), 'Current Password');
+        // logger.info('should have the title "Current Password" on the dialog box');
+        // assert.equal(SettingsPage.getNewField(), 'New Password');
+        // logger.info('should have the title "New Password" on the dialog box');
+        // assert.equal(SettingsPage.getConfirmField(), 'Confirm Password');
+        logger.info('should have the title "Confirm Password" on the dialog box');
+        browser.pause(2000);
+    })
 
     // it('should allow user to edit profile', function () {
     //     Logger.info('======================Edit Profile========================');
