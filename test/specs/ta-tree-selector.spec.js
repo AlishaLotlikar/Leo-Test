@@ -2,12 +2,12 @@ import TreeSelectorPage from '../pageobjects/ta-tree-selector.page';
 import LoginPage from '../pageobjects/ta-login.page';
 import GearSettings from '../pageobjects/ta-gear-settings.page';
 import utl from '../../utilities/common-utilities';
-import { Logger } from 'log4js';
+//import { Logger } from 'log4js';
 var log4js = require('log4js');
-var logger = log4js.getLogger();
-logger.level = 'info';
-logger.info("In Tree Selector Page");
-describe('navigating to hotels page', function () {
+var Logger = log4js.getLogger();
+Logger.level = 'info';
+Logger.info("In Tree Selector Page");
+describe('navigating to Home Page', function () {
 
     it('should show dropdown for user with access to multiple trees', function () {
         Logger.info('==================Mutliple tree User=================')
@@ -20,6 +20,7 @@ describe('navigating to hotels page', function () {
         expect(TreeSelectorPage.DisplayMultiTreeUser()).toBe(true);
         Logger.info('Tree selector box is displayed on the screen as the user can select different trees from the displayed list')
         browser.pause(2000);
+        TreeSelectorPage.ClickDropDown();
         expect(TreeSelectorPage.ShowSearchBox()).toBe(true);
         Logger.info('User is able to see the search box component on the click of the dropdown button')
         browser.pause(2000);
@@ -28,8 +29,8 @@ describe('navigating to hotels page', function () {
     it('should show only the single tree name for user with access to one tree', function () {
         Logger.info('======================Single Tree User===============================')
         LoginPage.open();
-        let userData = utl.readCSVFile();
-        LoginPage.getLogin(userData[2].username, userData[2].password);
+        let userData = utl.readPasswordCSVFile();
+        LoginPage.getLogin(userData[4].username, userData[4].password);
         Logger.info('Read username and password from CSV file for single user')
         browser.pause(2000);
         expect(TreeSelectorPage.SingleTreeUser()).toBe(false);

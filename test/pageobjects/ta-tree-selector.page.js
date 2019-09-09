@@ -1,12 +1,12 @@
 import Page from './page';
-import { Logger } from 'log4js';
+//import { Logger } from 'log4js';
 var log4js = require('log4js');
-var logger = log4js.getLogger();
-logger.level = 'info';
+var Logger = log4js.getLogger();
+Logger.level = 'info';
 class TreeSelector extends Page {
 
     get dropDown() { return $('//div[@id="treeSelectorContainerDiv"]'); }
-    get searchBox() { return $('//div[@id="treeSelectorSearchInput"]');}
+    get searchBox() { return $('//div[@id="treeSelectorSearchInput"]'); }
 
     // open () {
     //     super.open('m-thhotels')       
@@ -24,14 +24,18 @@ class TreeSelector extends Page {
         return this.dropDown.isDisplayed();
     }
 
-    ShowSearchBox() {
-        Logger.info('In Show search box function');
+    ClickDropDown() {
+        Logger.info('In Click Drop Down function');
         this.dropDown.click();
         browser.pause(2000);
-        this.searchBox.isDisplayed();
     }
 
-        
+    ShowSearchBox() {
+        Logger.info('In Show search box function');
+        return this.searchBox.isDisplayed();
+    }
+
+
 
     SingleTreeUser() {
         Logger.info('In Multi tree user function')
