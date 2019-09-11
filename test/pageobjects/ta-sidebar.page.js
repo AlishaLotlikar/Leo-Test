@@ -22,22 +22,16 @@ class SideBar extends Page {
 
   get ul() { return $('//ul[@role="listbox"]'); }
 
-<<<<<<< HEAD
   // Delete
   get deleteFolder() { return $('img[src="asserts/icons/delete.svg"]');}
 
-=======
->>>>>>> 44ca20bee1a334ed76ee4f19dd77b773f0749c89
   /**
    * define or overwrite page methods
    */
 
-<<<<<<< HEAD
   getDeleteFolder() {
     return this.deleteFolder.click();
   }
-=======
->>>>>>> 44ca20bee1a334ed76ee4f19dd77b773f0749c89
 
   getDropDown() {
     return this.country.click();
