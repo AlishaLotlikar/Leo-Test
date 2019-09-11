@@ -18,19 +18,38 @@ class SideBar extends Page {
   get writeMediaContainerName() { return $('//input[@placeholder="Name"]'); }
   get country() { return $('//div[@id="select-age"]'); }
 
-  get dropDownValue() { return $('//li[@data-value='+ index +']'); }
-
+  get dropDownValue() { return $('//li[@data-value=' + index + ']'); }
+  get confirmDelete() { return $('//span[contains(text(),"Delete Folder")]')}
   get ul() { return $('//ul[@role="listbox"]'); }
-
-  // Delete
-  get deleteFolder() { return $('img[src="asserts/icons/delete.svg"]');}
-
+  get propertyList() { return $('div[role="rowgroup" ]'); }
   /**
    * define or overwrite page methods
    */
+  getPropertyList() {
+    console.log('In Propert List');
+    var folder=[];
+    
+    this.propertyList.$$('div.rstcustom__node div.rstcustom__nodeContent').map((elmt, i) => {
+      browser.pause(3000);
+      console.log('property - ' + i, elmt.getText());
+      folder.push(elmt.getText());
+    });
+    console.log('folder name',folder);
+    
+
+    // folder[1]
+    
+  }
 
   getDeleteFolder() {
-    return this.deleteFolder.click();
+    var deleteID=[];
+    this.propertyList.$$(' div.rstcustom__node div.rstcustom__nodeContent div div.rstcustom__rowWrapper.rstcustom__rowWrapperDragDisabled div.rstcustom__row div.rstcustom__rowContents.undefined div.rstcustom__rowToolbar').map(id=>{
+      deleteID.push(id);
+      console.log('property',id.getText());
+    })
+    deleteID[1].click();
+    this.confirmDelete.click();
+
   }
 
   getDropDown() {
@@ -90,7 +109,7 @@ class SideBar extends Page {
     return this.treeName.getText();
   }
 
-  
+
 
 }
 

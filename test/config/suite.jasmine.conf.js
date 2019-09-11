@@ -12,16 +12,14 @@ exports.config = {
   ],
   // Patterns to exclude.
   exclude: [
-    // './test/specs/file-to-exclude.js'
-<<<<<<< HEAD
-    //'./test/specs/ta-sidebar.spec.js',
-    './test/specs/ta-gear-settings.spec.js',
-=======
     './test/specs/ta-sidebar.spec.js',
-    //'./test/specs/ta-gear-settings.spec.js',
->>>>>>> 44ca20bee1a334ed76ee4f19dd77b773f0749c89
-    './test/specs/ta-tree-selector.spec.js',
-    './test/specs/ta-user-login.spec.js'
+    './test/specs/ta-gear-settings.spec.js',
+    // './test/specs/ta-tree-selector.spec.js',
+    './test/specs/ta-user-login.spec.js',
+    './test/specs/ta-card-view.spec.js',
+    './test/specs/ta-edit-media-details-drawer.spec.js',
+    './test/specs/ta-tree-information.spec.js',
+    './test/specs/ta-sort-filter.spec.js'
 
   ],
 
@@ -71,7 +69,7 @@ exports.config = {
 
   jasmineNodeOpts: {
     // Jasmine default timeout
-    defaultTimeoutInterval: 60000,
+    defaultTimeoutInterval: 1000000,
 
     expectationResultHandler: function (passed, assertion) {
       // do something

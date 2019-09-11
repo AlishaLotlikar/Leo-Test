@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites/>
+<testsuites>
+  <testsuite name="navigating_to_Home_Page" timestamp="2019-09-11T15:05:27" time="71.517" tests="2" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="suiteName" value="navigating to Home Page"/>
+      <property name="capabilities" value="firefox.69_0.windows"/>
+      <property name="file" value=".\test\specs\ta-tree-selector.spec.js"/>
+    </properties>
+    <testcase classname="firefox.69_0.windows.navigating_to_Home_Page" name="should_be_able_to_get_dropdown" time="50.378"/>
+    <testcase classname="firefox.69_0.windows.navigating_to_Home_Page" name="should_be_able_to_search_a_tree" time="21.134"/>
+  </testsuite>
+</testsuites>

@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="phptravels_net_login_page" timestamp="2019-08-08T13:26:12" time="15.245" tests="2" failures="0" errors="1" skipped="0">
+  <testsuite name="show_side_bar" timestamp="2019-09-11T14:45:40" time="35.837" tests="1" failures="0" errors="1" skipped="0">
     <properties>
       <property name="specId" value="0"/>
-      <property name="suiteName" value="phptravels.net login page"/>
-      <property name="capabilities" value="chrome.75_0_3770_142.windowsnt"/>
-      <property name="file" value=".\test\specs\ta-user-login.spec.js"/>
+      <property name="suiteName" value="show side bar"/>
+      <property name="capabilities" value="firefox.69_0.windows"/>
+      <property name="file" value=".\test\specs\ta-sidebar.spec.js"/>
     </properties>
-    <testcase classname="chrome.75_0_3770_142.windowsnt.phptravels_net_login_page" name="should_get_title" time="4.75">
-      <error message="Expected 'LOGIN' to contain 'LOGINS'."/>
+    <testcase classname="firefox.69_0.windows.show_side_bar" name="should_be_able_to_delete_a_folder" time="10.53">
+      <error message="Error: Can't call $$ on element with selector &quot;div[role=&quot;rowgroup&quot; ]&quot; because element wasn't found"/>
       <system-err>
         <![CDATA[
-Error: Expected 'LOGIN' to contain 'LOGINS'.
-    at <Jasmine>
-    at <Jasmine>
-    at UserContext.toContain (C:\Users\Zapcom\Desktop\Leonardo\test\specs/ta-user-login.spec.js:18:38)
+Error: Can't call $$ on element with selector "div[role="rowgroup" ]" because element wasn't found
+    at SideBar.$$ [as getDeleteFolder] (C:\Users\Zapcom\Desktop\leoTest\Leo-Test\test\pageobjects/ta-sidebar.page.js:46:23)
+    at UserContext.getDeleteFolder (C:\Users\Zapcom\Desktop\leoTest\Leo-Test\test\specs/ta-sidebar.spec.js:66:13)
 ]]>
       </system-err>
     </testcase>
-    <testcase classname="chrome.75_0_3770_142.windowsnt.phptravels_net_login_page" name="should_allow_user_to_login" time="10.492"/>
   </testsuite>
 </testsuites>

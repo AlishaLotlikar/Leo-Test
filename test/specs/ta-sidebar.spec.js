@@ -64,8 +64,12 @@ describe('show side bar', function () {
 
   it('should be able to delete a folder', function () {
     SideBar.getDeleteFolder();
-    browser.pause(2000);
+    browser.pause();
   })
+
+  // it('Should be able to display all properties of the selected tree',function(){
+  //   SideBar.getPropertyList();
+  // })
 
 
   afterAll(() => {

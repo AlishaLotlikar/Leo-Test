@@ -7,18 +7,39 @@ class TreeSelector extends Page {
 
     get dropDown() { return $('//div[@id="treeSelectorContainerDiv"]'); }
     get searchBox() { return $('//div[@id="treeSelectorSearchInput"]'); }
+    get searchValue() {return $('input[id="react-select-single" ]')}
+    get searchIcon() { return $('span[id="searchIcon"  ]')}
+    get dropdownValues() {
+        return $('div[class=" css-1ml51p6-MenuList"]')
+    }
 
-    // open () {
-    //     super.open('m-thhotels')       
-    //     browser.pause(2000);
-    // }
-
-    // waitForHotelPageToLoad () {
-    //     if(!this.text.isDisplayed()){
-    //       this.text.waitForDisplayed(3000);
-    //     }
-    //   }
-
+    setSearchValue(value) {
+        console.log('In search Function')
+        this.dropDown.click();
+        browser.pause(2000);
+        this.searchValue.setValue(value);
+        this.dropdownValues.$$('div').map((elmt,i) => {
+            browser.pause(2000);
+            console.log('element - ' +i, elmt.getText());
+            elmt.click();
+            browser.pause(2000);
+            this.dropDown.click();
+        });
+        // this.searchValue.clearValue();
+    }
+    getDropdownValues() {
+        console.log('In tree selector Function')
+        this.dropDown.click();
+        browser.pause(2000);
+        // var treeValues = browser.getElements(this.dropdownValues).map(option => option.getText());
+        this.dropdownValues.$$('div').map((elmt,i) => {
+            browser.pause(2000);
+            console.log('element - ' +i, elmt.getText());
+            elmt.click();
+            browser.pause(2000);
+            this.dropDown.click();
+        });
+    }
     DisplayMultiTreeUser() {
         Logger.info('In Multi tree user function')
         return this.dropDown.isDisplayed();

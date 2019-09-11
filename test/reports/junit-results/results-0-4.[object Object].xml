@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tree_Information_Display" timestamp="2019-09-11T14:45:34" time="45" tests="4" failures="0" errors="3" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="suiteName" value="Tree Information Display"/>
+      <property name="capabilities" value="firefox.69_0.windows"/>
+      <property name="file" value=".\test\specs\ta-tree-information.spec.js"/>
+    </properties>
+    <testcase classname="firefox.69_0.windows.Tree_Information_Display" name="Should_Display_Tree_Tilte" time="3.19"/>
+    <testcase classname="firefox.69_0.windows.Tree_Information_Display" name="Should_Display_Tree_Description" time="2.324">
+      <error message="Expected false to be true."/>
+      <system-err>
+        <![CDATA[
+Error: Expected false to be true.
+    at <Jasmine>
+    at <Jasmine>
+    at UserContext.toBe (C:\Users\Zapcom\Desktop\leoTest\Leo-Test\test\specs/ta-tree-information.spec.js:29:62)
+]]>
+      </system-err>
+    </testcase>
+    <testcase classname="firefox.69_0.windows.Tree_Information_Display" name="Should_Display_Property_Marketing_Text" time="2.128">
+      <error message="Expected false to be true."/>
+      <system-err>
+        <![CDATA[
+Error: Expected false to be true.
+    at <Jasmine>
+    at <Jasmine>
+    at UserContext.toBe (C:\Users\Zapcom\Desktop\leoTest\Leo-Test\test\specs/ta-tree-information.spec.js:36:59)
+]]>
+      </system-err>
+    </testcase>
+    <testcase classname="firefox.69_0.windows.Tree_Information_Display" name="Should_Be_able_to_edit_tree_Information" time="10.174">
+      <error message="Error: Can't call click on element with selector &quot;//p[contains(text(),&quot;EDIT&quot;)]&quot; because element wasn't found"/>
+      <system-err>
+        <![CDATA[
+Error: Can't call click on element with selector "//p[contains(text(),"EDIT")]" because element wasn't found
+    at TreeInformationPage.click [as getEditDesc] (C:\Users\Zapcom\Desktop\leoTest\Leo-Test\test\pageobjects/ta-tree-information.page.js:34:25)
+    at UserContext.getEditDesc (C:\Users\Zapcom\Desktop\leoTest\Leo-Test\test\specs/ta-tree-information.spec.js:50:29)
+]]>
+      </system-err>
+    </testcase>
+  </testsuite>
+</testsuites>
