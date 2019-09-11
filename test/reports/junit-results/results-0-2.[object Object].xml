@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="phptravels_net_login_page" timestamp="2019-08-08T13:26:12" time="15.245" tests="2" failures="0" errors="1" skipped="0">
+    <properties>
+      <property name="specId" value="0"/>
+      <property name="suiteName" value="phptravels.net login page"/>
+      <property name="capabilities" value="chrome.75_0_3770_142.windowsnt"/>
+      <property name="file" value=".\test\specs\ta-user-login.spec.js"/>
+    </properties>
+    <testcase classname="chrome.75_0_3770_142.windowsnt.phptravels_net_login_page" name="should_get_title" time="4.75">
+      <error message="Expected 'LOGIN' to contain 'LOGINS'."/>
+      <system-err>
+        <![CDATA[
+Error: Expected 'LOGIN' to contain 'LOGINS'.
+    at <Jasmine>
+    at <Jasmine>
+    at UserContext.toContain (C:\Users\Zapcom\Desktop\Leonardo\test\specs/ta-user-login.spec.js:18:38)
+]]>
+      </system-err>
+    </testcase>
+    <testcase classname="chrome.75_0_3770_142.windowsnt.phptravels_net_login_page" name="should_allow_user_to_login" time="10.492"/>
+  </testsuite>
+</testsuites>
