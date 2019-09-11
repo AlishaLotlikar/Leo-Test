@@ -63,7 +63,8 @@ describe('show side bar', function () {
   // });
 
   it('should be able to delete a folder', function () {
-
+    SideBar.getDeleteFolder();
+    browser.pause(2000);
   })
 
 

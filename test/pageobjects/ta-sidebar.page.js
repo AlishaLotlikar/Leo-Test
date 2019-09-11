@@ -22,10 +22,16 @@ class SideBar extends Page {
 
   get ul() { return $('//ul[@role="listbox"]'); }
 
+  // Delete
+  get deleteFolder() { return $('img[src="asserts/icons/delete.svg"]');}
+
   /**
    * define or overwrite page methods
    */
 
+  getDeleteFolder() {
+    return this.deleteFolder.click();
+  }
 
   getDropDown() {
     return this.country.click();

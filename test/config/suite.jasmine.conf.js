@@ -13,8 +13,8 @@ exports.config = {
   // Patterns to exclude.
   exclude: [
     // './test/specs/file-to-exclude.js'
-    './test/specs/ta-sidebar.spec.js',
-    //'./test/specs/ta-gear-settings.spec.js',
+    //'./test/specs/ta-sidebar.spec.js',
+    './test/specs/ta-gear-settings.spec.js',
     './test/specs/ta-tree-selector.spec.js',
     './test/specs/ta-user-login.spec.js'
 
