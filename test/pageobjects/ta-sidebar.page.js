@@ -43,12 +43,17 @@ class SideBar extends Page {
 
   getDeleteFolder() {
     var deleteID=[];
-    this.propertyList.$$(' div.rstcustom__node div.rstcustom__nodeContent div div.rstcustom__rowWrapper.rstcustom__rowWrapperDragDisabled div.rstcustom__row div.rstcustom__rowContents.undefined div.rstcustom__rowToolbar').map(id=>{
-      deleteID.push(id);
-      console.log('property',id.getText());
+    browser.pause(2000);
+    this.propertyList.$$('div.rstcustom__node div.rstcustom__nodeContent div div.rstcustom__rowWrapper.rstcustom__rowWrapperDragDisabled div.rstcustom__row div.rstcustom__rowContents.undefined div.rstcustom__rowToolbar div.rstcustom__toolbarButton img').map((elem,id)=>{  
+      browser.pause(3000);
+      console.log('property' , id );
+      deleteID.push(elem.getText());
+      elem.getText();
+      browser.pause(6000);
     })
-    deleteID[1].click();
-    this.confirmDelete.click();
+    console.log('folder ids', deleteID);
+     deleteID[1].click();
+    // this.confirmDelete.click();
 
   }
 

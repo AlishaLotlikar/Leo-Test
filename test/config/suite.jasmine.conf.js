@@ -14,9 +14,9 @@ exports.config = {
   exclude: [
     './test/specs/ta-sidebar.spec.js',
     './test/specs/ta-gear-settings.spec.js',
-    // './test/specs/ta-tree-selector.spec.js',
+    './test/specs/ta-tree-selector.spec.js',
     './test/specs/ta-user-login.spec.js',
-    './test/specs/ta-card-view.spec.js',
+    // './test/specs/ta-card-view.spec.js',
     './test/specs/ta-edit-media-details-drawer.spec.js',
     './test/specs/ta-tree-information.spec.js',
     './test/specs/ta-sort-filter.spec.js'

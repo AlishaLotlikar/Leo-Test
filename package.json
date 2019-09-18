@@ -47,6 +47,7 @@
     "exceljs": "^1.14.0",
     "firefox-profile": "^1.2.0",
     "fs": "0.0.1-security",
+    "global": "^4.4.0",
     "jasmine-allure-reporter": "^1.0.2",
     "junit-viewer": "^4.11.1",
     "log4js": "^4.5.1",
