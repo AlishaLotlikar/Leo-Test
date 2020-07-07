@@ -52,7 +52,7 @@
     "log4js": "^4.5.1",
     "node-excel-to-json": "0.0.3",
     "nodemailer": "^6.3.0",
-    "npm": "^6.10.3",
+    "npm": "^6.14.6",
     "papaparse": "^5.0.1",
     "underscore": "^1.9.1",
     "webdriverio": "^5.11.13",
