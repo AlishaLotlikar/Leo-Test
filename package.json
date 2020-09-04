@@ -53,7 +53,7 @@
     "node-excel-to-json": "0.0.3",
     "nodemailer": "^6.3.0",
     "npm": "^6.10.3",
-    "papaparse": "^5.0.1",
+    "papaparse": "^5.2.0",
     "underscore": "^1.9.1",
     "webdriverio": "^5.11.13",
     "webdriverio-explicit-waits": "^1.0.2"
