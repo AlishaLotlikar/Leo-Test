@@ -51,7 +51,7 @@
     "junit-viewer": "^4.11.1",
     "log4js": "^4.5.1",
     "node-excel-to-json": "0.0.3",
-    "nodemailer": "^6.3.0",
+    "nodemailer": "^6.4.16",
     "npm": "^6.10.3",
     "papaparse": "^5.0.1",
     "underscore": "^1.9.1",
